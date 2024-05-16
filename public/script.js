@@ -22,7 +22,8 @@ function sendMessage(message){
         message: message.trim(),
     }
     // Append
-    appendMessage(msg, "outgoing")
+    appendMessage(msg, "outgoing");
+    scrollToBottom();
 
     socket.emit('message', msg)
 }
@@ -43,4 +44,9 @@ function appendMessage(msg, type){
 
 socket.on('message', (msg)=>{
     appendMessage(msg, 'incoming')
+    scrollToBottom();
 })
+
+function scrollToBottom(){
+    messageArea.scrollTop = messageArea.scrollHeight
+}
